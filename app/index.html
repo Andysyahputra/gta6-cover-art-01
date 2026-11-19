@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Vice Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">VC</span>
+    <div>
+      <h1>VICE COVER STUDIO</h1>
+      <p>Turn your photo into poster art &mdash; offline, in your browser</p>
+    </div>
+  </div>
+  <div class="topbar-note">100% offline &middot; your photos never leave this machine</div>
+</header>
+
+<main class="studio">
+  <section class="preview-col">
+    <div class="canvas-wrap">
+      <canvas id="preview" width="960" height="960"></canvas>
+      <div id="emptyHint" class="empty-hint">Load a photo or tap <b>Demo photos</b> to start</div>
+    </div>
+    <div class="panel-strip" id="panelStrip" aria-label="Panels"></div>
+    <p class="hint">Tip: click a panel, then drag the photo inside it to reposition. Scroll or use the zoom slider to zoom.</p>
+  </section>
+
+  <aside class="controls">
+    <section class="card">
+      <h2>1 &middot; Photos</h2>
+      <label class="file-btn" for="fileInput">Upload photos&hellip;</label>
+      <input id="fileInput" type="file" accept="image/*" multiple hidden>
+      <button id="demoBtn" type="button" class="btn ghost">Use demo photos</button>
+      <div id="photoSlots" class="photo-slots" aria-label="Loaded photos"></div>
+      <p class="mini">Photos are read on your machine only. Up to 3 photos &mdash; one per panel.</p>
+    </section>
+
+    <section class="card">
+      <h2>2 &middot; Layout</h2>
+      <div class="choice-row" id="layoutRow">
+        <button type="button" data-layout="grid" class="choice active">
+          <span class="layout-icon grid"></span>Sunset Grid
+        </button>
+        <button type="button" data-layout="split" class="choice">
+          <span class="layout-icon split"></span>Neon Split
+        </button>
+        <button type="button" data-layout="solo" class="choice">
+          <span class="layout-icon solo"></span>Solo Spotlight
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>3 &middot; Colour grade</h2>
+      <div class="choice-row" id="gradeRow">
+        <button type="button" data-grade="sunset" class="choice active">
+          <span class="swatch sunset"></span>Sunset
+        </button>
+        <button type="button" data-grade="neon" class="choice">
+          <span class="swatch neon"></span>Neon Nights
+        </button>
+        <button type="button" data-grade="duotone" class="choice">
+          <span class="swatch duotone"></span>Vice Duotone
+        </button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>4 &middot; Caption</h2>
+      <label class="field">Title
+        <input id="titleInput" type="text" value="VICE CITY" maxlength="28" autocomplete="off">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitleInput" type="text" value="SUNSET STRIP &bull; VOL. 01" maxlength="48" autocomplete="off">
+      </label>
+      <div class="field-row">
+        <label class="field">Title position
+          <select id="titlePos">
+            <option value="bottom" selected>Bottom</option>
+            <option value="top">Top</option>
+          </select>
+        </label>
+        <label class="field">Title colour
+          <select id="titleColor">
+            <option value="white" selected>White</option>
+            <option value="pink">Hot pink</option>
+            <option value="yellow">Sun yellow</option>
+            <option value="cyan">Neon cyan</option>
+          </select>
+        </label>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>5 &middot; Photo position</h2>
+      <label class="field">Zoom selected panel
+        <input id="zoomSlider" type="range" min="100" max="260" value="100">
+      </label>
+      <div class="btn-row">
+        <button id="fitBtn" type="button" class="btn ghost">Fit photo</button>
+        <button id="swapBtn" type="button" class="btn ghost">Swap panels</button>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>6 &middot; Export</h2>
+      <div class="choice-row" id="sizeRow">
+        <button type="button" data-size="1080x1080" class="choice active">1080 &times; 1080</button>
+        <button type="button" data-size="1080x1350" class="choice">1080 &times; 1350</button>
+        <button type="button" data-size="1920x1080" class="choice">1920 &times; 1080</button>
+      </div>
+      <button id="exportBtn" type="button" class="btn primary big">Download PNG</button>
+      <p id="statusLine" class="status">Ready.</p>
+    </section>
+  </aside>
+</main>
+
+<footer class="foot">
+  Vice Cover Studio &mdash; an original cover maker. Not affiliated with Rockstar Games.
+  Demo portraits are AI-generated illustrations, free to use.
+</footer>
+
+<script type="module" src="app.js"></script>
+</body>
+</html>
